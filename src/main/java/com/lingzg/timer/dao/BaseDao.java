@@ -52,4 +52,9 @@ public class BaseDao {
 	public Map<String, Object> get(String sql, Object...args){
 		return jdbcTemplate.queryForMap(sql, args);
 	}
+
+	public void executeBatch(String sql, List<Object[]> batchArgs) {
+		jdbcTemplate.batchUpdate(sql, batchArgs);
+		
+	}
 }

@@ -1,8 +1,8 @@
 CREATE TABLE `t_shares` (
-  `s_code` varchar(10) NOT NULL AUTO_INCREMENT,
+  `s_code` varchar(10) NOT NULL,
   `s_name` varchar(100) COLLATE utf8_bin DEFAULT NULL,
-  `type` varchar(10) COLLATE utf8_bin DEFAULT NULL,
-  `zgb` int(11) DEFAULT NULL,
+  `type` varchar(30) COLLATE utf8_bin DEFAULT NULL,
+  `prefix` varchar(10) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`s_code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
