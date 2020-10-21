@@ -12,6 +12,9 @@ public class StockService {
 	private BaseDao dao;
 	
 	public boolean save(String[] arr){
+		if("0".equals(arr[2])){
+			return true;
+		}
 		String sql = "select count(1) from t_shares_data where s_code=? and s_date=? and s_time=?";
 		int count = (int) dao.get(sql, Integer.class, arr[0], arr[31], arr[32]);
 		if(count>0){
@@ -28,7 +31,6 @@ public class StockService {
 			params[15] = arr[4];
 		}
 		long id = dao.save(sql, params);
-		System.out.println("id:"+id);
 		return true;
 	}
 }
