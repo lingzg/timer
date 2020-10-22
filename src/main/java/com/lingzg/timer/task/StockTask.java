@@ -31,13 +31,13 @@ public class StockTask {
 		}
 	}
 	
-	@Scheduled(cron = "0 1/5 9-15 * * MON-FRI")
+	@Scheduled(cron = "0 31/10 15 * * MON-FRI")
 	public void batchCollect(){
 		System.out.println("-----------batchCollect at "+LocalDateTime.now());
-		LocalTime now = LocalTime.now();
+		/*LocalTime now = LocalTime.now();
 		if(now.isBefore(LocalTime.of(9, 30)) || now.isAfter(LocalTime.of(15, 5))){
 			return;
-		}
+		}*/
 		List<Map<String, Object>> stocks = service.queryStock();
 		System.out.println("-----------stocks size: "+stocks.size());
 		int size=100;
@@ -52,7 +52,7 @@ public class StockTask {
 		}
 	}
 	
-	@Scheduled(cron = "0 45 15 * * MON-FRI")
+	@Scheduled(cron = "0 0 16 * * MON-FRI")
 	public void deleteRepeat(){
 		System.out.println("-----------deleteRepeat--------------");
 		service.deleteRepeat();
