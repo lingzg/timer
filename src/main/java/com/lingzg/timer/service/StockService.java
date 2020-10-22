@@ -106,8 +106,8 @@ public class StockService {
 	}
 	
 	public void deleteRepeat(){
-		String sql = "delete from t_shares_data where id not in (select id from (SELECT min(id) id from t_shares_data"+
-			"where s_date=DATE_FORMAT(curdate(),'%Y-%m-%d') GROUP BY s_code,s_time) t) and s_date=DATE_FORMAT(curdate(),'%Y-%m-%d')";
+		String sql = "delete from t_shares_data where id not in (select id from (SELECT min(id) id from t_shares_data where s_date=DATE_FORMAT(curdate(),'%Y-%m-%d')"
+				+ " GROUP BY s_code,s_time) t) and s_date=DATE_FORMAT(curdate(),'%Y-%m-%d')";
 		dao.update(sql);
 	}
 }
