@@ -84,7 +84,8 @@ public class StockService {
 	}
 	
 	public boolean saveBatch(String[] results){
-		String sql = "insert into t_shares_data(s_date,s_time,s_name,s_code,jrkp,zrsp,dqjg,zd,zdf,jrzg,jrzd,jrbd,jrbf,cjsl,cjje,jrsp) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "insert into t_shares_data(s_date,s_time,s_name,s_code,jrkp,zrsp,dqjg,zd,zdf,jrzg,jrzd,jrbd,jrbf,cjsl,cjje,jrsp)"
+				+ " values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		List<Object[]> paramsList = new ArrayList<Object[]>();
 		for(String str : results){
 			str = str.replace("var hq_str_", "").replace("=", ",").replace("\"", "");
@@ -106,8 +107,7 @@ public class StockService {
 	}
 	
 	public void deleteRepeat(){
-		String sql = "delete from t_shares_data where id not in (select id from (SELECT min(id) id from t_shares_data where s_date=DATE_FORMAT(curdate(),'%Y-%m-%d')"
-				+ " GROUP BY s_code,s_time) t) and s_date=DATE_FORMAT(curdate(),'%Y-%m-%d')";
+		String sql = "delete from t_shares_data where id not in (select id from (SELECT min(id) id from t_shares_data GROUP BY s_code,s_date,s_time) t)";
 		dao.update(sql);
 	}
 }
